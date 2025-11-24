@@ -1,7 +1,9 @@
 // lib/prisma.ts
-import { PrismaClient } from "@prisma/client"; // standard import
+import { PrismaClient } from "@prisma/client"; // correct import for Prisma 7
 
-const globalForPrisma = global as unknown as { prisma: PrismaClient };
+const globalForPrisma = globalThis as typeof globalThis & {
+  prisma?: PrismaClient;
+};
 
 export const prisma =
   globalForPrisma.prisma ||
