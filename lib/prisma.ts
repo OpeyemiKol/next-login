@@ -1,5 +1,5 @@
 // lib/prisma.ts
-import { PrismaClient } from "@prisma/client"; // correct import for Prisma 7
+import { PrismaClient } from "@prisma/client";
 
 const globalForPrisma = globalThis as typeof globalThis & {
   prisma?: PrismaClient;
@@ -11,4 +11,6 @@ export const prisma =
     log: ["query"],
   });
 
-if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+if (process.env.NODE_ENV !== "production") {
+  globalForPrisma.prisma = prisma;
+}
